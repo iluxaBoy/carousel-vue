@@ -1,11 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CarouselComponent from '@/components/CarouselComponent.vue'
+
+import { useImagesStore } from '@/store/images'
+import { onMounted } from 'vue'
+
+const imagesStore = useImagesStore()
+
+onMounted(async () => {
+  await imagesStore.fetchImages()
+})
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div v-if="!imagesStore.loading">
+    <CarouselComponent :imagesStore="imagesStore.images" />
+  </div>
 </template>
-
-<style scoped></style>
