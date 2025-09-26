@@ -83,7 +83,12 @@ const prev = () => {
   })
 }
 
-const getImg = (card: PicsumImage) => selectedImg.value.push(card)
+const getImg = (card: PicsumImage) => {
+  const existingIndex = selectedImg.value.findIndex((img) => img.id === card.id)
+
+  if (existingIndex !== -1) selectedImg.value.splice(existingIndex, 1)
+  else selectedImg.value.push(card)
+}
 
 onMounted(() => {
   setStep()
@@ -207,7 +212,7 @@ img {
 @media (max-width: 1320px) {
   .carousel {
     margin-top: 100px;
-    .inner{
+    .inner {
       width: 100%;
     }
   }
@@ -222,9 +227,8 @@ img {
   .carousel {
     margin-top: 80px;
     .inner {
-
       .card {
-        margin: 0 94px;
+        margin: 0 80px;
       }
     }
   }
