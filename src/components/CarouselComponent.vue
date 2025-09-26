@@ -228,7 +228,7 @@ img {
     margin-top: 80px;
     .inner {
       .card {
-        margin: 0 80px;
+        margin: 0 60px;
       }
     }
   }
